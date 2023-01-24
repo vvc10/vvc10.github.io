@@ -2043,8 +2043,9 @@ button {
   }
 
   .sa5_r>.message_in_sec {
-    background-color: transparent;
+    background-color:transparent;
     height: auto;
+    /* max-height: ; */
     width: 100%;
     display: flex;
     padding: 0 1.5rem;
@@ -2366,25 +2367,4 @@ button {
 
 
 
-/* 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
+/*
