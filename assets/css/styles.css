@@ -674,7 +674,7 @@ button {
 .trick__title,
 .trick__price {
   color: var(--title-color);
-  font-weight: var(--font-medium);
+  font-weight: 500;
   font-size: var(--normal-font-size);
 }
 
@@ -1475,7 +1475,7 @@ button {
     grid-template-columns: repeat(1, 220px);
     justify-content: center;
     gap: 1rem;
-    padding: 0 0 2rem 0;
+    padding: 0rem 0 2rem 0;
     border-radius: 0 0 2rem 2rem;
     border: 0.1px solid transparent;
     margin-left: 0;
@@ -1483,17 +1483,18 @@ button {
   }
 
   .trick__content {
-    position: relative;
-    background: var(--container-color);
-    border-radius: 1rem;
-    padding: 1rem 1rem 0.5rem 1rem;
-    text-align: center;
-    overflow: hidden;
     background-color: #212121;
+    text-align: center;
+    padding: 1.5rem .5rem .5rem .5rem;
+    /* width: 20rem; */
+    height: auto;
     border: 0.1px solid transparent;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
   }
 
   .trick__subtitle {
+    /* word-wrap: break-word; */
     font-size: 0.6rem;
     margin-bottom: var(--mb-0-5);
     color: rgb(169, 169, 169);
@@ -1501,7 +1502,7 @@ button {
 
   .trick__title {
     color: var(--title-color);
-    font-weight: var(--font-medium);
+    font-weight: 500;
     font-size: 0.7rem;
   }
 
@@ -1944,6 +1945,7 @@ button {
   }
 
   .trick__title {
+    font-weight: 500;
     font-size: .8rem;
   }
 
@@ -2192,7 +2194,7 @@ button {
   .sa2_r {
     width: auto;
     height: auto;
-    background-color: rgb(40, 43, 43);
+    background-color: transparent;
     color: white;
     /* padding: 20px 50px; */
     /* padding-top: px; */
@@ -2265,6 +2267,7 @@ button {
   }
 
   .trick__title {
+    font-weight: 500;
     font-size: 1rem;
   }
 
