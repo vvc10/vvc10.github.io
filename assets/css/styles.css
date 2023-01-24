@@ -228,14 +228,14 @@ button {
   align-items: center;
   column-gap: .5rem;
   font-weight: var(--font-medium);
-  font-size: 0.8rem;
+  font-size: 1rem;
   background: -webkit-linear-gradient(-45deg, #ff8c05 0%, #d61a5e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .nav__logo-img {
-  width: 1.25rem;
+  width: 1.5rem;
 
 }
 
