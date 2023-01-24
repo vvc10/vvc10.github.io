@@ -2044,7 +2044,7 @@ button {
 
   .sa5_r>.message_in_sec {
     background-color: transparent;
-    height: 7rem;
+    height: auto;
     width: 100%;
     display: flex;
     padding: 0 1.5rem;
