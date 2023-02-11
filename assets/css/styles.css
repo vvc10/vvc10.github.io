@@ -89,6 +89,20 @@ html {
   padding: 0;
   margin: 0;
 }
+.lcd{
+  font-style: italic;
+  font-size: .4rem;
+ width: 100px;
+ color: #a0a0a0;
+  background-color: transparent;
+position: absolute;
+top: 0;
+z-index: 100;
+width: 100%;
+text-align: center;
+padding: .5rem 1rem;
+font-weight:  200;
+}
 #myVideo {
   z-index: -1000;
   position:  fixed;
@@ -104,6 +118,7 @@ html {
 }
 
 body {
+
   margin: var(--header-height) 0 0 0;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
@@ -1726,7 +1741,7 @@ border: 1px solid black;
 
   .header {
     /* background-color: turquoise; */
-    padding: 0 1.5rem 0 1.5rem;
+    padding: 0rem 1.5rem;
 
   }
 
@@ -2140,11 +2155,19 @@ border: 1px solid black;
 /* For large devices */
 @media screen and (min-width: 992px) {
   .container {
-    margin-left: auto;
-    margin-right: auto;
+   
+ margin: 0 auto;
+
   }
-
-
+.nav{
+  margin: 1rem auto;
+}
+.header{
+  background-color:transparent;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto ; 
+}
 
   .home__content {
     padding-top: 2rem;
