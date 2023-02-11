@@ -1,3 +1,21 @@
+// 
+
+const repositoryName = "portfolio";
+const repositoryOwner = "vvc10";
+
+fetch(
+    `https://api.github.com/repos/${repositoryOwner}/${repositoryName}/commits`
+)
+    .then(response => response.json())
+    .then(data => {
+        const lastCommitDate = new Date(data[0].commit.committer.date);
+        document.getElementById("last-commit-date").innerHTML =
+         "Last updated on " + lastCommitDate.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" });
+    });
+
+
+// 
+
 const texts = ["Web developer.", "UX Designer.", "Graphic designer."];
 const speed = 110;
 const pause = 800; // <--- the longer delay between text direction changes
@@ -39,17 +57,21 @@ function scrollFunction() {
 
     }
     else {
+
         document.getElementById("navbar")
 
             .style.margin = "1.5rem auto";
+
         document.getElementById("navbar")
             .style.borderRadius = "2rem";
         document.getElementById("navbar")
 
-            .style.backgroundColor = "#242424";
-        document.getElementById("navbar")
-
             .style.maxWidth = '968px';
+
+        document.getElementById("header")
+            .style.padding = '0rem 1rem';
+
+
     }
 }
 
@@ -254,4 +276,6 @@ function close_menu() {
     }
 
 }
+
+// 
 
