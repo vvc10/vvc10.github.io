@@ -22,7 +22,7 @@
   --container-color: linear-gradient(136deg, hsl(360, 28%, 35%) 0%, hsl(18, 28%, 35%) 100%); */
 
   /*Black solid*/
-  --body-color: #212121;
+  --body-color: black;
   --container-color: hsl(30, 8%, 10%);
 
   /*========== Font and typography ==========*/
@@ -88,6 +88,15 @@ html {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+#myVideo {
+  z-index: -1000;
+  position:  fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  opacity: 0.4;
 }
 
 html {
@@ -333,18 +342,26 @@ button {
   row-gap: 1rem;
   background-color: #242424;
   border-radius: 2rem;
+  height: auto;
+  /* margin-bottom: 1rem; */
 
 }
 
 .home__group {
   display: grid;
   position: relative;
-  background-color: transparent;
+  background-color: tr;
   padding-top: 2rem;
+
 }
 
-.home__img {
-  height: 250px;
+.home__group>img {
+  margin: auto;
+  height: 180px;
+  width: 180px;
+border-radius: 200px;
+border: 1px solid black;
+  background-color: black;
   justify-self: center;
 }
 
@@ -420,7 +437,7 @@ button {
 }
 
 .download_btn_area {
-  margin-top: 1rem;
+  margin: 1rem 0;
   background: -webkit-linear-gradient(-45deg, #ff8c05 0%, #d61a5e 100%);
   padding: 29px 20px;
   /* cursor: pointer; */
@@ -1150,16 +1167,14 @@ button {
     padding-top: 1rem;
 
   }
+  .home__group>img {
+    margin: auto;
+    height: 120px;
+    width: 120px;
 
-  .home__img {
-    border-radius: 100px;
-    background-color: transparent;
-    height: 7rem;
-    position: relative;
-    top: 0px;
-    padding: 0;
   }
-
+  
+  
   .home__subtitle {
     font-size: 1rem;
     /* text-transform: uppercase; */
@@ -1644,7 +1659,7 @@ button {
     gap: 3rem;
     padding: 1.5rem 1.5rem 1rem 1.5rem;
     border-radius: 2rem;
-    margin: 1.5rem auto;
+    margin: 0.2rem auto;
     border: 0.1px solid transparent;
     width: 100%;
     color: white;
@@ -1758,15 +1773,18 @@ button {
 
   .home__content {
     margin-top: 9rem;
-    padding: 0 0;
+    padding: 2rem 0;
     grid-template-columns: repeat(2, 1fr);
     gap: 4rem;
   }
 
-  .home__img {
-    height: 300px;
+  
+  .home__group>img {
+    margin: auto;
+    height: 180px;
+    width: 180px;
   }
-
+  
   .section__title {
     width: 100%;
     font-size: 1.2rem;
@@ -2094,7 +2112,7 @@ button {
     gap: 3rem;
     padding: 1.5rem 1.5rem 1rem 1.5rem;
     border-radius: 2rem;
-    margin: 1.5rem auto;
+    margin: 0.2rem auto;
     border: 0.1px solid transparent;
     width: 100%;
     color: white;
@@ -2135,11 +2153,12 @@ button {
     padding-top: 0;
   }
 
-  .home__img {
-    height: 400px;
-    transform: translateY(-3rem);
+ 
+  .home__group>img {
+    margin: auto;
+    height: 200px;
+    width: 200px;
   }
-
   .home__indicator {
     top: initial;
     right: initial;
