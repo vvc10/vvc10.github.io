@@ -1111,11 +1111,13 @@ border: 1px solid black;
 
   .header {
     background-color: transparent;
-    padding: 0 1rem;
+    padding: 0rem 0rem;
+     
 
   }
 
   .nav {
+
     padding: 30px 30px;
     background-color: #212121;
   }
