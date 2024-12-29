@@ -123,7 +123,7 @@ function HeroScene() {
       </Canvas>
 
       {/* Health Tag */}
-      <div className="mx-auto absolute bottom-[14%] right-[20%] md:bottom-[10%] md:right-[10%]">
+      <div className="mx-auto absolute bottom-[15%] right-[10%] md:bottom-[10%] md:right-[10%]">
         <span 
           onClick={handleTagClick} 
           onMouseEnter={() => setShowPopup(true)} 

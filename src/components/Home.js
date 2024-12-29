@@ -51,7 +51,7 @@ const Home = () => {
 
   return (<>
     <section className="w-full flex flex-col md:flex-row h-screen px-[0%] md:px-[5%]" id="home" style={{paddingLeft:'0'}}>
-      <div className='w-[100vw] md:w-[30vw] h-[40vh] md:h-[100%] md:pl-[4%] md:pt-[5%]'>
+      <div className='w-[100vw] md:w-[30vw] h-[40vh] md:h-[100%] md:pt-[5%]'>
         <Swiper
           className="home-swiper"
           pagination={{ clickable: true }}
@@ -59,7 +59,7 @@ const Home = () => {
           slidesPerView={1}
         >
           <SwiperSlide className="swiper-slide">
-            <div className="py-[10%] px-[5%] text-center md:text-left">
+            <div className="py-[10%] px-[0%] md:px-[4%] text-center md:text-left">
               <h3 className="font-[400] text-[16px] md:text-[20px] mb-[5px]">Heyy!</h3>
               <h1 className="text-[38px] md:text-[48px] mb-[20px]">I am Pankaj</h1>
               <div className="flex flex-col gap-[10px]">
