@@ -83,7 +83,7 @@ const Sidebar = () => {
       </div>
 
       {/* Mobile Sidebar */}
-      <div className="block absolute md:hidden w-100% h-full z-50">
+      <div className="block absolute md:hidden w-100% h-full z-[5000]">
         <nav
           className="fixed bottom-8 left-1/2 transform -translate-x-1/2 rounded-full bg-[rgba(255, 255, 255, 0.1)] backdrop-blur-lg shadow-lg border border-[#e5e7eb17] p-[20px]"
         >
