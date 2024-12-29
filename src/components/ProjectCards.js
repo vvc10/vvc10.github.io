@@ -1,8 +1,29 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
+import { useSpring, animated } from 'react-spring';
+ 
 
 const ProjectCards = ({ project }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const cardSpring = useSpring({
+    transform: isHovered
+      ? 'perspective(1000px) rotateY(15deg) rotateX(-10deg) scale(1.05)'
+      : 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)',
+    boxShadow: isHovered
+      ? '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+      : '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+    config: { mass: 5, tension: 350, friction: 40 }
+  });
+
   return (
-    <div className="flex flex-col w-full  rounded-[20px] gap-[2px] border-[0.5px] border-[rgba(255,255,255,0.1)] shadow-lg shadow-black/20" style={{padding: '10px'}}>
+    <animated.div
+      className="relative overflow-hidden rounded-lg z-[1000]"
+      style={cardSpring}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+       <div className="flex flex-col w-full  rounded-[20px] gap-[2px] border-[0.5px] border-[rgba(255,255,255,0.1)]" style={{padding: '10px'}}>
       <div className="h-[200px] w-full bg-gray-800 rounded-t-[20px]">
       <img src={project.banner} className="h-full w-full object-cover rounded-t-[12px]" />
       </div>
@@ -16,6 +37,8 @@ const ProjectCards = ({ project }) => {
         </a>
       </div>
     </div>
+    </animated.div>
+   
   );
 };
 

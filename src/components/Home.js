@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import './css/styles.css';
+import About from './About';
+import HeroScene from './HeroScene';
 
 const Home = () => {
   const [dynamicText, setDynamicText] = useState('');
@@ -40,26 +42,32 @@ const Home = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  return (
-    <section className="w-[100%] h-fit px-0 md:px-[5%]" id="home">
-      <Swiper
-        className="home-swiper"
-        pagination={{ clickable: true }}
-        spaceBetween={50}
-        slidesPerView={1}
-      >
-        <SwiperSlide className="swiper-slide">
-          <div className="">
-            <div className="py-[10%] px-[10%] text-center md:text-left">
-              <h3 className=" font-[400] text-[16px] md:text-[20px] mb-[5px] text-center md:text-left">Heyy!</h3>
-              <h1 className="text-[38px] md:text-[48px] mb-[20px]  text-center md:text-left">I am Pankaj</h1>
-              <div className='flex flex-col gap-[10px] ' style={{paddingLeft:'0'}}>
-                <div className="flex flex-row h-[20px] mb-[10px] items-center w-fit mx-auto md:mx-[0]" style={{paddingLeft: '0'}}>
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (<>
+    <section className="w-full flex flex-col md:flex-row h-screen px-[0%] md:px-[5%]" id="home" style={{paddingLeft:'0'}}>
+      <div className='w-[100vw] md:w-[30vw] h-[40vh] md:h-[100%] md:pl-[4%] md:pt-[5%]'>
+        <Swiper
+          className="home-swiper"
+          pagination={{ clickable: true }}
+          spaceBetween={50}
+          slidesPerView={1}
+        >
+          <SwiperSlide className="swiper-slide">
+            <div className="py-[10%] px-[5%] text-center md:text-left">
+              <h3 className="font-[400] text-[16px] md:text-[20px] mb-[5px]">Heyy!</h3>
+              <h1 className="text-[38px] md:text-[48px] mb-[20px]">I am Pankaj</h1>
+              <div className="flex flex-col gap-[10px]">
+                <div className="flex flex-row h-[20px] mb-[10px] items-center w-fit mx-auto md:mx-0">
                   <p className="text-[16px] md:text-[20px] text-gray-500">I create awesome</p>
                   <p className="fade-in text-[16px] md:text-[20px] text-white" id="demo">
                     {dynamicText}
                   </p>
-                  {/* <p className="text-[16px] md:text-[20px] text-gray-500">at a time</p> */}
                 </div>
                 <div className="bg-white w-fit text-center px-3 rounded-full mt-8 cursor-pointer mb-[10px] mx-auto md:mx-0">
                   <span className="text-black text-[16px]">Download CV</span>
@@ -70,12 +78,18 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-
             </div>
-          </div>
-        </SwiperSlide>
-      </Swiper>
+          </SwiperSlide>
+        </Swiper>
+
+      </div>
+
+      <HeroScene />
     </section>
+
+
+  </>
+
   );
 };
 

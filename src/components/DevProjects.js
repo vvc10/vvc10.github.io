@@ -1,10 +1,11 @@
+'use client'
+
 import React from 'react';
 import ProjectCards from './ProjectCards';
 import './css/styles.css'
 import banner1 from './img/projectbanner/4.png';
 import banner2 from './img/projectbanner/5.png';
 import banner3 from './img/projectbanner/6.png';
-
 
 const DevProjects = () => {
   const projects = [
@@ -19,14 +20,12 @@ const DevProjects = () => {
       description: "Play Your Mood, Feel the Music.",
       link: "https://github.com/vvc10/",
       banner: banner2,
-
     },
     {
       title: "Imageius",
       description: "A Genius Image Generator for genius creator.",
       link: "https://github.com/vvc10/",
       banner: banner3,
-
     }
   ];
 
@@ -52,3 +51,4 @@ const DevProjects = () => {
 };
 
 export default DevProjects;
+

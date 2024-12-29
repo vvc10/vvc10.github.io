@@ -31,7 +31,7 @@ const Sidebar = () => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden md:block bg-black-900 h-full">
+      <div className="hidden md:block bg-black-900 h-full z-[5000]">
         <nav
           className="w-fit fixed left-[20px] top-[30px] rounded-full p-3 border-[1px] border-[rgb(255,255,255,10%)]"
           style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}

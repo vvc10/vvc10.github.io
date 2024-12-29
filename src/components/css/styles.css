@@ -2841,3 +2841,19 @@ button {
     grid-template-columns: repeat(3, 1fr); /* Three columns for larger screens and up (lg breakpoint) */
   }
 }
+
+/* styles.css */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-custom {
+  animation: pulse 1s infinite;
+}
+
+

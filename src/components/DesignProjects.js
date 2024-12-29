@@ -28,6 +28,7 @@ const DesignProjects = () => {
   ];
 
   return (
+    
     <div>
         <section className="px-[5%] py-[5%] w-full h-fit" id="projects">
       <div className="flex flex-row justify-between items-center mb-[20px] text-left">
