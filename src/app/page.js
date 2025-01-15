@@ -106,7 +106,11 @@ export default function Page() {
                 </Badge>
                 <Badge variant="secondary" className="flex items-center gap-1">
                   <LinkIcon className="w-3 h-3" />
-                  /links
+                 <a href='https://github.com/vvc10/'> /github</a> 
+                </Badge>
+                <Badge variant="secondary" className="flex items-center gap-1">
+                  <LinkIcon className="w-3 h-3" />
+                 <a href='https://www.linkedin.com/in/pankaj-yadav-23b688250/'> /linkedin</a> 
                 </Badge>
                 <Badge variant="secondary" className="flex items-center gap-1">
                   <GrLocation className="w-3 h-3" />
