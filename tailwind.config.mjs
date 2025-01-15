@@ -7,6 +7,20 @@ export default {
   ],
   theme: {
     extend: {
+      rotate: {
+        'y-25': 'rotateY(25deg)',
+        'y-minus-25': 'rotateY(-25deg)',
+        'x-minus-10': 'rotateX(-10deg)',
+      },
+      perspective: {
+        '1000': '1000px',
+      },
+      keyframes: {
+        'glow-border': {
+          '0%, 100%': { opacity: 0.2 },
+          '50%': { opacity: 1 },
+        },
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
