@@ -1,14 +1,17 @@
 import { Badge } from "../../components/ui/badge"
 import { Pin } from 'lucide-react'
+import { useState } from "react"
+export default function BlogPost({ darkMode }) {
 
-export default function BlogPost() {
+ 
+
   return (
-    <article className="border rounded-lg p-6">
+    <article className={`border ${darkMode ? "border-gray-700" : ""} rounded-lg p-6`}>
       <div className="flex items-center gap-2 mb-4">
         <Pin className="w-4 h-4 text-gray-500" />
         <span className="text-sm text-gray-500">Pinned Cheep</span>
       </div>
-      
+
       <div className="flex items-center gap-3 mb-4">
         <div className="w-10 h-10 rounded-full bg-gray-200" />
         <div>
