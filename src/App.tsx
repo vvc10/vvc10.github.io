@@ -133,8 +133,7 @@ function App() {
                         {project.title}
                         <span className='p-[2px] rounded-full border bg-white hover:bg-red-400 text-gray-400 hover:text-white ml-2'><GoArrowUpRight /></span>
                       </h3>
-                      {/* <p className="text-gray-200 text-sm">{project.content}</p> */}
-                    </div>
+                     </div>
                   </a>
                 ))}
               </div>
