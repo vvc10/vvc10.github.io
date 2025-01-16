@@ -60,14 +60,25 @@ function App() {
           {/* Left Column - Profile */}
           <div className="lg:w-1/3 space-y-8">
             <div className={`p-8 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-xl`}>
-              <div className="relative w-32 h-32 mx-auto mb-6">
-                <img
-                  src="/assets/bg/pf01.jpeg"
-                  alt="Profile"
-                  className="rounded-2xl object-cover w-full h-full shadow-lg"
-                />
-                <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white"></div>
-              </div>
+            <div 
+  className="relative w-32 h-32 mx-auto mb-6 group" 
+  onContextMenu={(e) => e.preventDefault()} // Disable right-click
+>
+  <div
+    className="rounded-2xl w-full h-full shadow-lg bg-cover bg-center"
+    style={{
+      backgroundImage: `url('/assets/bg/pf01.jpeg')`, // Set as background image
+    }}
+  >
+    <div 
+      className="absolute inset-0 cursor-default" 
+      draggable="false" 
+      aria-hidden="true"
+    ></div>
+  </div>
+  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white"></div>
+</div>
+
 
               <h1 className="text-2xl font-bold text-center mb-2">Pankaj Yadav</h1>
               <p className={`text-center mb-6 ${darkMode ? 'text-gray-500' : 'text-gray-800'}`}>
