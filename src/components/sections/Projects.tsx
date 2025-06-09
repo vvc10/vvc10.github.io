@@ -3,6 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 import Button from '../ui/Button';
+import cover1 from '../../assets/cover/cover01.png';
+import cover2 from '../../assets/cover/cover02.png';
+import cover3 from '../../assets/cover04.png';
+import cover4 from '../../assets/cover/cover04.png';
+import cover5 from '../../assets/cover/cover05.png';
+import cover6 from '../../assets/cover/cover07.png';
 
 interface Project {
   id: string;
@@ -20,7 +26,7 @@ const projects: Project[] = [
     id: 'lhc',
     title: 'Luxury Hotel Concierge',
     description: 'Premium travel booking with personalized services and luxury stays.',
-    image: 'https://raw.githubusercontent.com/vvc10/vvc10.github.io/refs/heads/main/public/assets/cover/cover01.png',
+    image: cover1,
     category: 'Bookings',
     challenge: 'Creating a seamless premium booking experience.',
     solution: 'Clean UI with luxury-focused navigation and service access.',
@@ -30,7 +36,7 @@ const projects: Project[] = [
     id: 'hmf',
     title: 'Hedgemyfunds',
     description: 'Mobile banking with investment insights and real-time tracking.',
-    image: 'https://raw.githubusercontent.com/vvc10/vvc10.github.io/refs/heads/main/public/assets/cover/cover04.png',
+    image: cover4,
     category: 'FinTech',
     challenge: 'Building trust in financial services.',
     solution: 'Secure UI with alerts and easy investment tools.',
@@ -40,7 +46,7 @@ const projects: Project[] = [
     id: 'whatsbuy',
     title: 'Whatsbuy',
     description: 'Local store discovery and WhatsApp ordering platform.',
-    image: 'https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: cover6,
     category: 'SaaS',
     challenge: 'Bringing offline shops online.',
     solution: 'Quick catalogs with direct WhatsApp ordering.',
@@ -50,7 +56,7 @@ const projects: Project[] = [
     id: 'flashy',
     title: 'FlashyPanels',
     description: 'Rental SMM panel service for digital marketing.',
-    image: 'https://github.com/vvc10/vvc10.github.io/blob/main/public/assets/cover/flashycover.png?raw=true',
+    image: cover3,
     category: 'SaaS',
     challenge: 'Providing fast and simple SMM tools.',
     solution: 'Modern UI with automation and order tracking.',
@@ -60,7 +66,7 @@ const projects: Project[] = [
     id: 'aideoa',
     title: 'AIDEOA',
     description: 'Hub for mining professionals to connect and grow.',
-    image: 'https://github.com/vvc10/vvc10.github.io/blob/main/public/assets/cover/cover05.png?raw=true',
+    image: cover5,
     category: 'Org',
     challenge: 'Uniting mining professionals digitally.',
     solution: 'Community portal with jobs and forums.',
@@ -98,11 +104,10 @@ const Projects = () => {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm transition-all ${
-                selectedCategory === category
+              className={`px-4 py-2 rounded-full text-sm transition-all ${selectedCategory === category
                   ? 'bg-primary text-white'
                   : 'bg-white/5 text-text-secondary hover:bg-white/10'
-              }`}
+                }`}
             >
               {category}
             </button>
