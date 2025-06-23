@@ -13,6 +13,7 @@ import CtaSection from './components/sections/ctasection';
 import Testinomials from './components/sections/testinomials';
 // import ProjectDetails from './components/sections/ProjectDetails'; // Create this component
 import ProjectsPage from './pages/mywork';
+import ProjectCaseStudy from './pages/projectdetails';
 // import NotFound from './components/sections/NotFound'; // Create this component
 
 
@@ -55,7 +56,7 @@ function App() {
 
                   {/* Projects routes */}
                   <Route path="/projects" element={<ProjectsPage />} />
-
+                  <Route path="/projects/:projectId" element={<ProjectCaseStudy />} />
                 </Routes>
               </main>
               <Footer />

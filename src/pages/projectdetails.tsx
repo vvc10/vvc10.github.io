@@ -1,25 +1,45 @@
 import { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import ProjectStats from '../components/ui/ProjectStats';
 import TechStack from '../components/ui/TechStack';
 import ProjectGallery from '../components/ui/ProjectGallery';
+import { projects } from '../components/ui/ProjectData'; // Updated import path
 
-const ProjectCaseStudy = ({ project }) => {
+const ProjectCaseStudy = () => {
+  const { projectId } = useParams<{ projectId: string }>();
   const [activeImage, setActiveImage] = useState(0);
   
-  // Mock gallery images for demonstration
-  const galleryImages = [
-    project.image,
-    project.image,
-    project.image,
-    project.image
-  ];
+  // Find the project
+  const project = projects.find(p => p.id === projectId);
+  
+  // Handle case where project is not found
+  if (!project) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-white mb-4">Project Not Found</h1>
+          <p className="text-text-secondary mb-8">
+            The project you're looking for doesn't exist or has been removed.
+          </p>
+          <Link 
+            to="/projects" 
+            className="inline-flex items-center text-primary hover:text-primary/80"
+          >
+            <ArrowLeft className="mr-2" size={18} /> Back to Projects
+          </Link>
+        </div>
+      </div>
+    );
+  }
+  
+  // Use gallery images from project data if available
+  const galleryImages = project.galleryImages || [project.image, project.image, project.image, project.image];
 
   return (
-    <section className="relative min-h-screen bg-background text-text-primary">
+    <section className="relative min-h-screen bg-background text-text-primary mt-12">
       {/* Decorative backgrounds */}
       <div className="absolute top-40 -left-48 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 right-0 w-72 h-72 bg-secondary/5 rounded-full blur-3xl"></div>
@@ -27,7 +47,7 @@ const ProjectCaseStudy = ({ project }) => {
       {/* Back button */}
       <div className="container mx-auto pt-8 px-4">
         <Link to="/projects" className="inline-flex items-center text-text-secondary hover:text-primary transition-colors">
-          <ArrowLeft className="mr-2" size={18} /> Back to Projects
+          <ArrowLeft className="mr-2" size={18} /> 
         </Link>
       </div>
       
@@ -67,27 +87,24 @@ const ProjectCaseStudy = ({ project }) => {
               <Button href={project.link} variant="primary">
                 Visit Live Project <ExternalLink className="ml-2" size={18} />
               </Button>
-              <Button variant="outline">
-                View Source Code
-              </Button>
+              {project.sourceCodeLink && (
+                <Button href={project.sourceCodeLink} variant="outline" disabled>
+                  View Source Code
+                </Button>
+              )}
             </div>
           </motion.div>
         </div>
       </div>
       
       {/* Stats section */}
-      <div className="bg-white/5 backdrop-blur-sm py-16 border-y border-white/10">
-        <div className="container mx-auto px-4">
-          <ProjectStats 
-            items={[
-              { value: "40%", label: "Conversion Increase" },
-              { value: "15K", label: "Monthly Users" },
-              { value: "92%", label: "User Satisfaction" },
-              { value: "3.2s", label: "Avg. Load Time" }
-            ]}
-          />
+      {project.stats && project.stats.length > 0 && (
+        <div className="container w-full mx-auto bg-white/5 backdrop-blur-sm rounded-2xl py-16 border-y border-white/10">
+          <div className="container mx-auto px-4">
+            <ProjectStats items={project.stats} />
+          </div>
         </div>
-      </div>
+      )}
       
       {/* Case study content */}
       <div className="container mx-auto px-4 py-16">
@@ -106,19 +123,12 @@ const ProjectCaseStudy = ({ project }) => {
                   <p className="text-text-secondary">{project.solution}</p>
                 </div>
                 
-                <div>
-                  <h3 className="text-sm font-semibold text-primary mb-3">TECH STACK</h3>
-                  <TechStack 
-                    technologies={[
-                      { name: "React", icon: "react" },
-                      { name: "TypeScript", icon: "typescript" },
-                      { name: "Tailwind CSS", icon: "tailwind" },
-                      { name: "Node.js", icon: "nodejs" },
-                      { name: "MongoDB", icon: "mongodb" },
-                      { name: "Framer Motion", icon: "framer" }
-                    ]}
-                  />
-                </div>
+                {project.techStack && project.techStack.length > 0 && (
+                  <div>
+                    <h3 className="text-sm font-semibold text-primary mb-3">TECH STACK</h3>
+                    <TechStack technologies={project.techStack} />
+                  </div>
+                )}
               </div>
             </div>
             
@@ -126,115 +136,71 @@ const ProjectCaseStudy = ({ project }) => {
               <h2 className="text-2xl font-bold text-white mb-6">Case Study</h2>
               
               <div className="space-y-8">
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-4">The Problem</h3>
-                  <p className="text-text-secondary mb-4">
-                    In today's fast-paced digital landscape, {project.title} faced significant challenges in 
-                    {project.category === 'FinTech' ? ' building trust with users in financial services' : 
-                     project.category === 'Bookings' ? ' delivering a premium booking experience' : 
-                     project.category === 'SaaS' ? ' bringing offline shops online efficiently' : 
-                     ' uniting professionals digitally'}.
-                  </p>
-                  <p className="text-text-secondary">
-                    Users struggled with {project.category === 'FinTech' ? 'understanding complex financial data' : 
-                    project.category === 'Bookings' ? 'finding personalized luxury accommodations' : 
-                    project.category === 'SaaS' ? 'discovering local stores and ordering easily' : 
-                    'connecting with peers in the mining industry'}, resulting in low conversion rates and user retention.
-                  </p>
-                </div>
-                
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-4">Design Process</h3>
-                  <p className="text-text-secondary mb-4">
-                    Our team followed a user-centered design approach, starting with in-depth research and interviews. 
-                    We identified key pain points and created user personas to guide our design decisions.
-                  </p>
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10 mb-4">
-                    <h4 className="text-lg font-semibold text-primary mb-3">Key Insights</h4>
-                    <ul className="space-y-2 text-text-secondary">
-                      <li className="flex items-start">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-3"></div>
-                        {project.category === 'FinTech' ? 'Users needed simplified financial data visualization' : 
-                         project.category === 'Bookings' ? 'Travelers desired personalized recommendations' : 
-                         project.category === 'SaaS' ? 'Shop owners wanted quick setup with minimal technical knowledge' : 
-                         'Professionals sought industry-specific networking opportunities'}
-                      </li>
-                      <li className="flex items-start">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-3"></div>
-                        {project.category === 'FinTech' ? 'Security concerns were the primary barrier to adoption' : 
-                         project.category === 'Bookings' ? 'Luxury travelers valued exclusive experiences over price' : 
-                         project.category === 'SaaS' ? 'Customers preferred ordering through familiar channels like WhatsApp' : 
-                         'Members wanted access to specialized industry knowledge'}
-                      </li>
-                      <li className="flex items-start">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-3"></div>
-                        {project.category === 'FinTech' ? 'Mobile-first approach was essential for financial tracking' : 
-                         project.category === 'Bookings' ? 'High-quality visuals significantly impacted booking decisions' : 
-                         project.category === 'SaaS' ? 'Real-time inventory updates were crucial for store owners' : 
-                         'Job seekers needed specialized industry job boards'}
-                      </li>
-                    </ul>
+                {project.problem && (
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-4">The Problem</h3>
+                    <p className="text-text-secondary">{project.problem}</p>
                   </div>
-                </div>
+                )}
                 
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-4">The Solution</h3>
-                  <p className="text-text-secondary mb-4">
-                    We designed {project.title} to address these challenges through a combination of intuitive UI, 
-                    powerful functionality, and thoughtful user experience design.
-                  </p>
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                    <h4 className="text-lg font-semibold text-primary mb-3">Key Features</h4>
-                    <ul className="space-y-2 text-text-secondary">
-                      <li className="flex items-start">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-3"></div>
-                        {project.category === 'FinTech' ? 'Real-time investment tracking with clear visualizations' : 
-                         project.category === 'Bookings' ? 'Personalized concierge service integrated with booking flow' : 
-                         project.category === 'SaaS' ? 'One-click WhatsApp ordering with automated catalog generation' : 
-                         'Industry-specific job board with personalized recommendations'}
-                      </li>
-                      <li className="flex items-start">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-3"></div>
-                        {project.category === 'FinTech' ? 'Biometric authentication and bank-level security' : 
-                         project.category === 'Bookings' ? 'Luxury property showcase with 360° virtual tours' : 
-                         project.category === 'SaaS' ? 'Inventory management with automatic stock level updates' : 
-                         'Professional networking with interest-based matching'}
-                      </li>
-                      <li className="flex items-start">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-3"></div>
-                        {project.category === 'FinTech' ? 'AI-powered financial insights and recommendations' : 
-                         project.category === 'Bookings' ? 'Exclusive access to high-end experiences and events' : 
-                         project.category === 'SaaS' ? 'Analytics dashboard for tracking orders and customer behavior' : 
-                         'Resource library with industry research and publications'}
-                      </li>
-                    </ul>
+                {project.designProcess && (
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-4">Design Process</h3>
+                    <p className="text-text-secondary mb-4">{project.designProcess}</p>
+                    
+                    {project.keyInsights && project.keyInsights.length > 0 && (
+                      <div className="bg-white/5 rounded-xl p-6 border border-white/10 mb-4">
+                        <h4 className="text-lg font-semibold text-primary mb-3">Key Insights</h4>
+                        <ul className="space-y-2 text-text-secondary">
+                          {project.keyInsights.map((insight, index) => (
+                            <li key={index} className="flex items-start">
+                              <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-3"></div>
+                              {insight}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
-                </div>
+                )}
                 
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-4">Results & Impact</h3>
-                  <p className="text-text-secondary">
-                    After launching {project.title}, we observed significant improvements across key metrics:
-                  </p>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-                    <div className="glassmorphism p-4 rounded-xl text-center">
-                      <div className="text-2xl font-bold text-primary">40%</div>
-                      <div className="text-sm text-text-secondary">Conversion Increase</div>
-                    </div>
-                    <div className="glassmorphism p-4 rounded-xl text-center">
-                      <div className="text-2xl font-bold text-primary">15K+</div>
-                      <div className="text-sm text-text-secondary">Monthly Active Users</div>
-                    </div>
-                    <div className="glassmorphism p-4 rounded-xl text-center">
-                      <div className="text-2xl font-bold text-primary">92%</div>
-                      <div className="text-sm text-text-secondary">User Satisfaction</div>
-                    </div>
-                    <div className="glassmorphism p-4 rounded-xl text-center">
-                      <div className="text-2xl font-bold text-primary">4.8★</div>
-                      <div className="text-sm text-text-secondary">Average Rating</div>
+                {project.keyFeatures && project.keyFeatures.length > 0 && (
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-4">The Solution</h3>
+                    {project.solutionDescription && (
+                      <p className="text-text-secondary mb-4">{project.solutionDescription}</p>
+                    )}
+                    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                      <h4 className="text-lg font-semibold text-primary mb-3">Key Features</h4>
+                      <ul className="space-y-2 text-text-secondary">
+                        {project.keyFeatures.map((feature, index) => (
+                          <li key={index} className="flex items-start">
+                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-3"></div>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-                </div>
+                )}
+                
+                {project.results && (
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-4">Results & Impact</h3>
+                    <p className="text-text-secondary">{project.results}</p>
+                    
+                    {project.resultStats && project.resultStats.length > 0 && (
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        {project.resultStats.map((stat, index) => (
+                          <div key={index} className="glassmorphism p-4 rounded-xl text-center">
+                            <div className="text-2xl font-bold text-primary">{stat.value}</div>
+                            <div className="text-sm text-text-secondary">{stat.label}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -242,16 +208,22 @@ const ProjectCaseStudy = ({ project }) => {
       </div>
       
       {/* Gallery section */}
-      <div className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-white text-center mb-4">Project Gallery</h2>
-          <p className="text-text-secondary text-center max-w-2xl mx-auto mb-12">
-            Explore the key screens and interactions that define the {project.title} experience
-          </p>
-          
-          <ProjectGallery images={galleryImages} activeImage={activeImage} setActiveImage={setActiveImage} />
+      {galleryImages.length > 0 && (
+        <div className="py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-white text-center mb-4">Project Gallery</h2>
+            <p className="text-text-secondary text-center max-w-2xl mx-auto mb-12">
+              Explore the key screens and interactions that define the {project.title} experience
+            </p>
+            
+            <ProjectGallery 
+              images={galleryImages} 
+              activeImage={activeImage} 
+              setActiveImage={setActiveImage} 
+            />
+          </div>
         </div>
-      </div>
+      )}
       
       {/* CTA section */}
       <div className="py-16">
@@ -267,15 +239,6 @@ const ProjectCaseStudy = ({ project }) => {
       </div>
     </section>
   );
-};
-
-// Example usage in a route
-const ProjectPageWrapper = () => {
-  // This would normally come from your router params
-  const projectId = "lhc"; 
-  const project = projects.find(p => p.id === projectId) || projects[0];
-  
-  return <ProjectCaseStudy project={project} />;
 };
 
 export default ProjectCaseStudy;

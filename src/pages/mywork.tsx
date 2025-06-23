@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'; // Added for navigation
 import SectionHeading from '../components/ui/SectionHeading';
 import Button from '../components/ui/Button';
 import cover1 from '../assets/cover/cover01.png';
@@ -9,70 +10,8 @@ import cover3 from '../assets/cover04.png';
 import cover4 from '../assets/cover/cover04.png';
 import cover5 from '../assets/cover/cover05.png';
 import cover6 from '../assets/cover/cover07.png';
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  category: string;
-  challenge: string;
-  solution: string;
-  link: string;
-}
-
-const projects: Project[] = [
-  {
-    id: 'lhc',
-    title: 'Luxury Hotel Concierge',
-    description: 'Premium travel booking with personalized services and luxury stays.',
-    image: cover1,
-    category: 'Bookings',
-    challenge: 'Creating a seamless premium booking experience.',
-    solution: 'Clean UI with luxury-focused navigation and service access.',
-    link: 'https://theluxuryhotelconcierge.com/',
-  },
-  {
-    id: 'hmf',
-    title: 'Hedgemyfunds',
-    description: 'Mobile banking with investment insights and real-time tracking.',
-    image: cover4,
-    category: 'FinTech',
-    challenge: 'Building trust in financial services.',
-    solution: 'Secure UI with alerts and easy investment tools.',
-    link: 'https://www.hedgemyfunds.com/',
-  },
-  {
-    id: 'whatsbuy',
-    title: 'Whatsbuy',
-    description: 'Local store discovery and WhatsApp ordering platform.',
-    image: cover6,
-    category: 'SaaS',
-    challenge: 'Bringing offline shops online.',
-    solution: 'Quick catalogs with direct WhatsApp ordering.',
-    link: 'https://whatsbuy.in/',
-  },
-  {
-    id: 'flashy',
-    title: 'FlashyPanels',
-    description: 'Rental SMM panel service for digital marketing.',
-    image: cover3,
-    category: 'SaaS',
-    challenge: 'Providing fast and simple SMM tools.',
-    solution: 'Modern UI with automation and order tracking.',
-    link: 'https://flashypanels.com/',
-  },
-  {
-    id: 'aideoa',
-    title: 'AIDEOA',
-    description: 'Hub for mining professionals to connect and grow.',
-    image: cover5,
-    category: 'Org',
-    challenge: 'Uniting mining professionals digitally.',
-    solution: 'Community portal with jobs and forums.',
-    link: 'https://aideoa.org/',
-  }
-];
+import { projects } from '../components/ui/ProjectData';
+ 
 
 type Category = 'All' | 'SaaS' | 'FinTech' | 'Bookings' | 'Org';
 
@@ -81,10 +20,22 @@ const categories: Category[] = ['All', 'SaaS', 'FinTech', 'Bookings', 'Org'];
 const ProjectsPage = () => {
     const [selectedCategory, setSelectedCategory] = useState<Category>('All');
     const [hoveredId, setHoveredId] = useState<string | null>(null);
+    const navigate = useNavigate(); // Navigation hook
 
     const filteredProjects = selectedCategory === 'All'
         ? projects
         : projects.filter(project => project.category === selectedCategory);
+
+    // Handle case study navigation
+    const handleCaseStudyClick = (projectId: string, e: React.MouseEvent) => {
+        e.stopPropagation(); // Prevent card click from triggering
+        navigate(`/projects/${projectId}`);
+    };
+
+    // Handle card click for case study
+    const handleCardClick = (projectId: string) => {
+        navigate(`/projects/${projectId}`);
+    };
 
     return (
         <section id="projects" className="section-padding relative overflow-hidden">
@@ -125,9 +76,10 @@ const ProjectsPage = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.4 }}
-                                className="glassmorphism group hover-card overflow-hidden"
+                                className="glassmorphism group hover-card overflow-hidden cursor-pointer"
                                 onMouseEnter={() => setHoveredId(project.id)}
                                 onMouseLeave={() => setHoveredId(null)}
+                                onClick={() => handleCardClick(project.id)}
                             >
                                 {/* Project image */}
                                 <div className="relative aspect-video overflow-hidden">
@@ -170,13 +122,22 @@ const ProjectsPage = () => {
                                                     <p className="text-sm text-text-secondary">{project.solution}</p>
                                                 </div>
 
-                                                <Button
-                                                    href={project.link}
-                                                    className="mt-6 text-sm py-2"
-                                                    variant="outline"
-                                                >
-                                                    View Project <ExternalLink className="ml-2 w-4 h-4" />
-                                                </Button>
+                                                <div className="flex gap-3 mt-6">
+                                                    <Button
+                                                        className="text-sm py-2"
+                                                        variant="outline"
+                                                        onClick={(e) => handleCaseStudyClick(project.id, e)}
+                                                    >
+                                                        Case Study
+                                                    </Button>
+                                                    <Button
+                                                        href={project.link}
+                                                        className="text-sm py-2"
+                                                        variant="primary"
+                                                    >
+                                                        Live Project <ExternalLink className="ml-2 w-4 h-4" />
+                                                    </Button>
+                                                </div>
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
@@ -185,8 +146,6 @@ const ProjectsPage = () => {
                         ))}
                     </AnimatePresence>
                 </div>
-
-
             </div>
         </section>
     );

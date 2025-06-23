@@ -9,6 +9,7 @@ import cover3 from '../../assets/cover04.png';
 import cover4 from '../../assets/cover/cover04.png';
 import cover5 from '../../assets/cover/cover05.png';
 import cover6 from '../../assets/cover/cover07.png';
+import { projects } from '../ui/ProjectData';
 
 interface Project {
   id: string;
@@ -21,58 +22,58 @@ interface Project {
   link: string;
 }
 
-const projects: Project[] = [
-  {
-    id: 'lhc',
-    title: 'Luxury Hotel Concierge',
-    description: 'Premium travel booking with personalized services and luxury stays.',
-    image: cover1,
-    category: 'Bookings',
-    challenge: 'Creating a seamless premium booking experience.',
-    solution: 'Clean UI with luxury-focused navigation and service access.',
-    link: 'https://theluxuryhotelconcierge.com/',
-  },
-  {
-    id: 'hmf',
-    title: 'Hedgemyfunds',
-    description: 'Mobile banking with investment insights and real-time tracking.',
-    image: cover4,
-    category: 'FinTech',
-    challenge: 'Building trust in financial services.',
-    solution: 'Secure UI with alerts and easy investment tools.',
-    link: 'https://www.hedgemyfunds.com/',
-  },
-  {
-    id: 'whatsbuy',
-    title: 'Whatsbuy',
-    description: 'Local store discovery and WhatsApp ordering platform.',
-    image: cover6,
-    category: 'SaaS',
-    challenge: 'Bringing offline shops online.',
-    solution: 'Quick catalogs with direct WhatsApp ordering.',
-    link: 'https://whatsbuy.vercel.app/',
-  },
-  {
-    id: 'flashy',
-    title: 'FlashyPanels',
-    description: 'Rental SMM panel service for digital marketing.',
-    image: cover3,
-    category: 'SaaS',
-    challenge: 'Providing fast and simple SMM tools.',
-    solution: 'Modern UI with automation and order tracking.',
-    link: 'https://flashypanels.com/',
-  },
-  {
-    id: 'aideoa',
-    title: 'AIDEOA',
-    description: 'Hub for mining professionals to connect and grow.',
-    image: cover5,
-    category: 'Org',
-    challenge: 'Uniting mining professionals digitally.',
-    solution: 'Community portal with jobs and forums.',
-    link: 'https://www.aideoa.org.in/signup',
-  }
-];
+// const projects: Project[] = [
+//   {
+//     id: 'lhc',
+//     title: 'Luxury Hotel Concierge',
+//     description: 'Premium travel booking with personalized services and luxury stays.',
+//     image: cover1,
+//     category: 'Bookings',
+//     challenge: 'Creating a seamless premium booking experience.',
+//     solution: 'Clean UI with luxury-focused navigation and service access.',
+//     link: 'https://theluxuryhotelconcierge.com/',
+//   },
+//   {
+//     id: 'hmf',
+//     title: 'Hedgemyfunds',
+//     description: 'Mobile banking with investment insights and real-time tracking.',
+//     image: cover4,
+//     category: 'FinTech',
+//     challenge: 'Building trust in financial services.',
+//     solution: 'Secure UI with alerts and easy investment tools.',
+//     link: 'https://www.hedgemyfunds.com/',
+//   },
+//   {
+//     id: 'whatsbuy',
+//     title: 'Whatsbuy',
+//     description: 'Local store discovery and WhatsApp ordering platform.',
+//     image: cover6,
+//     category: 'SaaS',
+//     challenge: 'Bringing offline shops online.',
+//     solution: 'Quick catalogs with direct WhatsApp ordering.',
+//     link: 'https://whatsbuy.vercel.app/',
+//   },
+//   {
+//     id: 'flashy',
+//     title: 'FlashyPanels',
+//     description: 'Rental SMM panel service for digital marketing.',
+//     image: cover3,
+//     category: 'SaaS',
+//     challenge: 'Providing fast and simple SMM tools.',
+//     solution: 'Modern UI with automation and order tracking.',
+//     link: 'https://flashypanels.com/',
+//   },
+//   {
+//     id: 'aideoa',
+//     title: 'AIDEOA',
+//     description: 'Hub for mining professionals to connect and grow.',
+//     image: cover5,
+//     category: 'Org',
+//     challenge: 'Uniting mining professionals digitally.',
+//     solution: 'Community portal with jobs and forums.',
+//     link: 'https://www.aideoa.org.in/signup',
+//   }
+// ];
 
 type Category = 'All' | 'SaaS' | 'FinTech' | 'Bookings' | 'Org';
 

@@ -14,26 +14,27 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus('submitting');
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus('success');
-      
-      // Reset form data after success
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
       });
-      
-      // Reset form status after a delay
-      setTimeout(() => {
-        setFormStatus('idle');
-      }, 3000);
-    }, 1500);
+      if (response.ok) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setFormStatus('idle'), 3000);
+      } else {
+        setFormStatus('error');
+        setTimeout(() => setFormStatus('idle'), 3000);
+      }
+    } catch (error) {
+      setFormStatus('error');
+      setTimeout(() => setFormStatus('idle'), 3000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -161,7 +162,6 @@ const Contact = () => {
               
               <Button 
                 className="w-fit flex items-center justify-center px-12 mx-auto py-3 rounded-full relative overflow-hidden bg-gradient-to-br from-[#7c4cff] to-[#9872ff] text-white shadow-md border-t-[2px] border-t-white/30 hover:brightness-110 transition-all duration-300 hover:shadow-lg"
-                onClick={handleSubmit}
                 disabled={formStatus === 'submitting'}
               >
                 {formStatus === 'idle' && (
