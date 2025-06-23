@@ -23,7 +23,7 @@ const services: Service[] = [
   },
   {
     id: 'ux-design ',
-    title: 'ux-design that delivers',
+    title: 'UI/UX design that delivers',
     description: 'Creating intuitive, accessible, and visually striking user interfaces that drive engagement.',
     icon: Palette,
     technologies: ['Figma', 'Framer', 'Prototyping', 'User Testing'],

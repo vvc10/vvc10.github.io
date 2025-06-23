@@ -50,7 +50,7 @@ const projects: Project[] = [
     category: 'SaaS',
     challenge: 'Bringing offline shops online.',
     solution: 'Quick catalogs with direct WhatsApp ordering.',
-    link: 'https://whatsbuy.in/',
+    link: 'https://whatsbuy.vercel.app/',
   },
   {
     id: 'flashy',
@@ -70,7 +70,7 @@ const projects: Project[] = [
     category: 'Org',
     challenge: 'Uniting mining professionals digitally.',
     solution: 'Community portal with jobs and forums.',
-    link: 'https://aideoa.org/',
+    link: 'https://www.aideoa.org.in/signup',
   }
 ];
 
