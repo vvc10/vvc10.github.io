@@ -88,7 +88,7 @@ const ProjectCaseStudy = () => {
                 Visit Live Project <ExternalLink className="ml-2" size={18} />
               </Button>
               {project.sourceCodeLink && (
-                <Button href={project.sourceCodeLink} variant="outline" disabled>
+                <Button href={project.sourceCodeLink} variant="outline" disabled={!project.sourceCodeLink}>
                   View Source Code
                 </Button>
               )}
