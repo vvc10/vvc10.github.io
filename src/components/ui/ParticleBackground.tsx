@@ -25,10 +25,10 @@ const ParticleBackground = ({ id = 'tsparticles' }: ParticleBackgroundProps) => 
         fpsLimit: 60,
         particles: {
           color: {
-            value: '#7E4AF1',
+            value: 'rgb(var(--color-primary))',
           },
           links: {
-            color: '#7E4AF1',
+            color: 'rgb(var(--color-primary))',
             distance: 150,
             enable: true,
             opacity: 0.2,

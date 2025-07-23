@@ -7,6 +7,7 @@ interface ButtonProps {
   href?: string;
   className?: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 const Button = ({ 
@@ -14,7 +15,8 @@ const Button = ({
   variant = 'primary', 
   href, 
   className = '', 
-  onClick 
+  onClick,
+  disabled 
 }: ButtonProps) => {
   const baseClasses = 'btn';
   
@@ -44,7 +46,7 @@ const Button = ({
   }
 
   return (
-    <button onClick={onClick} className={classes}>
+    <button onClick={onClick} className={classes + (disabled ? ' opacity-60 cursor-not-allowed' : '')} disabled={disabled}>
       {buttonContent}
     </button>
   );

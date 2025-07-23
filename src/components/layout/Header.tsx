@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Logo from '../ui/Logo';
+import { Button as MovingBorderButton } from "../ui/moving-border";
+
 
 const navItems = [
   // { name: 'Home', href: '#hero' },
-  { name: 'Services', href: '#services' },
+  // { name: 'Services', href: '#services' },
   // { name: 'Team', href: '#team' },
   { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' }
@@ -32,36 +34,49 @@ const Header = () => {
   };
 
   return (
-    <motion.header 
+    <motion.header
       className={`fixed justify-between w-full pt-2 z-50`}
       initial="hidden"
       animate="visible"
       variants={headerVariants}
       transition={{ duration: 0.5 }}
     >
-      <div className={`flex w-[50%] items-center justify-between  backdrop-blur-sm gap-6 px-3 py-4 mx-auto ${
-        isScrolled ? 'glassmorphism' : 'glassmorphism'
-      }`}>
+      <div className={`flex bg-transparent w-[50%] items-center justify-between  backdrop-blur-sm gap-6 px-6 py-4 mx-auto ${isScrolled ? 'glassmorphism' : 'glassmorphism'
+        }`}>
         <Logo />
-        
+
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-4">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="text-text-secondary hover:text-white font-medium text-sm transition-colors duration-300"
+              className="text-zinc-500 hover:text-white font-medium text-sm transition-colors duration-300"
             >
               {item.name}
             </a>
           ))}
-          <a href="#contact" className="btn btn-primary text-sm px-4 py-2 bg-gradient-to-br from-[#7c4cff] to-[#9872ff] text-white shadow-md border-t-[2px] border-t-white/30 hover:brightness-110 transition-all ">
-            Connect
+
+          <span className="text-zinc-900">|</span>
+
+          <a
+href='https://x.com/pankajstwt'
+            className="text-zinc-500 text-[16px]  px-3 py-2 rounded-lg cursor-pointer hover:text-white font-medium text-sm transition-colors duration-300"
+          >
+            𝕏
           </a>
+          <MovingBorderButton
+            as="a"
+            href="#contact"
+
+            className="group px-8 py-3 rounded-full relative overflow-hidden border border-surface bg-gradient-to-b from-surface to-background text-white shadow-inner shadow-background border-t-[2px] border-t-white/20 hover:brightness-110 transition-all duration-300 hover:shadow-md"
+          >
+            Connect
+          </MovingBorderButton>
         </nav>
 
         {/* Mobile Menu Button */}
-        <button 
+        <button
           onClick={toggleMobileMenu}
           className="md:hidden text-white"
           aria-label="Toggle menu"
@@ -93,7 +108,7 @@ const Header = () => {
               ))}
               <a
                 href="#contact"
-                className="btn btn-primary text-sm mt-3 text-center"
+                className="btn cursor-pointer btn-primary text-sm mt-3 text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Get in Touch

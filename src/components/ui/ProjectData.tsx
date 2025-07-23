@@ -1,10 +1,10 @@
 // src/data/projectsData.ts
-import cover1 from '../../assets/cover/cover01.png';
-import cover2 from '../../assets/cover/cover02.png';
-import cover3 from '../../assets/cover04.png';
-import cover4 from '../../assets/cover/cover04.png';
-import cover5 from '../../assets/cover/cover05.png';
-import cover6 from '../../assets/cover/cover07.png';
+import cover1 from '../../assets/cover/cn1.png';
+import cover2 from '../../assets/cover/cn2.png';
+import cover3 from '../../assets/cover/cn3.png';
+import cover4 from '../../assets/cover/cn4.png';
+import cover5 from '../../assets/cover/cn5.png';
+import cover6 from '../../assets/cover/cn6.png';
 
 export interface Project {
   id: string;
@@ -26,12 +26,13 @@ export interface Project {
   keyFeatures?: string[];
   results?: string;
   resultStats?: { value: string; label: string }[];
+  tags?: string[];
 }
 
 export const projects: Project[] = [
   {
     id: 'lhc',
-    title: 'Luxury Hotel Concierge UI/UX',
+    title: 'LHC',
     description: 'Designed a premium booking interface tailored for luxury travelers.',
     image: cover1,
     category: 'SaaS',
@@ -62,17 +63,18 @@ export const projects: Project[] = [
       "Concierge booking tools",
       "Visual-first listing previews"
     ],
-    results: "The UI overhaul led to a dramatic rise in engagement, satisfaction, and user retention.",
+    results: "The UI overhaul led to a dramatic rise in engagement, satisfaction, and user retention. ~client   ",
     resultStats: [
       { value: "4.8★", label: "Avg. Feedback" },
       { value: "40%", label: "Conversion Rate" }
-    ]
+    ],
+    tags: ["portfolio", "sidebar"]
   },
   {
     id: 'hmf',
-    title: 'Hedgemyfunds UI/UX',
+    title: 'HMF',
     description: 'Designed secure, modern mobile banking UI for new investors.',
-    image: cover4,
+    image: cover2,
     category: 'FinTech',
     challenge: 'Designing an intuitive interface that balances investment clarity and trust.',
     solution: 'Visualized investment insights with simple flows and secure aesthetics.',
@@ -100,57 +102,59 @@ export const projects: Project[] = [
       "Secure feel UI",
       "User education micro-interactions"
     ],
-    results: "UI/UX revamp contributed to high user satisfaction and reduced app abandonment.",
+    results: "UI/UX revamp contributed to high user satisfaction and reduced app abandonment. ~client",
     resultStats: [
       { value: "4.9★", label: "App Rating" },
       { value: "78%", label: "Referral Rate" }
-    ]
+    ],
+    tags: ["UIUX", "App"]
   },
-  {
-    id: 'whatsbuy',
-    title: 'Whatsbuy - Frontend + UI/UX',
-    description: 'Developed and designed a storefront builder for hyperlocal stores.',
-    image: cover6,
-    category: 'SaaS',
-    challenge: 'Digitizing small stores with minimal setup friction.',
-    solution: 'Built frontend with Next.js and designed fast, clean UI for WhatsApp-based orders.',
-    link: 'https://whatsbuy.in/',
-    sourceCodeLink: 'https://github.com/vvc10/whatsbuy',
-    techStack: [
-      { name: "Next.js", icon: "nextjs" },
-      { name: "TypeScript", icon: "typescript" },
-      { name: "Tailwind CSS", icon: "tailwind" },
-      { name: "WhatsApp API", icon: "whatsapp" }
-    ],
-    stats: [
-      { value: "3.5K", label: "Daily Orders" },
-      { value: "85%", label: "Order Success Rate" }
-    ],
-    galleryImages: [cover6, cover6, cover6, cover6],
-    problem: "Local shops lacked digital tools to quickly go online, and customers couldn’t easily reach them.",
-    designProcess: "Mapped out seller and buyer journeys; rapid prototyping followed by real-world feedback iterations.",
-    keyInsights: [
-      "Shops need zero-learning setup",
-      "WhatsApp > app for communication",
-      "Visual clarity boosts order confidence"
-    ],
-    solutionDescription: "A fast, responsive platform with WhatsApp order sync, real-time inventory, and minimal interface for sellers.",
-    keyFeatures: [
-      "One-click store builder",
-      "Frontend performance optimization",
-      "WhatsApp integrated checkout"
-    ],
-    results: "Digitized 1.2K+ stores, driving local commerce and user loyalty.",
-    resultStats: [
-      { value: "40%", label: "Repeat Customers" },
-      { value: "1.2K", label: "Stores Onboarded" }
-    ]
-  },
+  // {
+  //   id: 'whatsbuy',
+  //   title: 'Whatsbuy - Frontend + UI/UX',
+  //   description: 'Developed and designed a storefront builder for hyperlocal stores.',
+  //   image: cover6,
+  //   category: 'SaaS',
+  //   challenge: 'Digitizing small stores with minimal setup friction.',
+  //   solution: 'Built frontend with Next.js and designed fast, clean UI for WhatsApp-based orders.',
+  //   link: 'https://whatsbuy.in/',
+  //   sourceCodeLink: 'https://github.com/vvc10/whatsbuy',
+  //   techStack: [
+  //     { name: "Next.js", icon: "nextjs" },
+  //     { name: "TypeScript", icon: "typescript" },
+  //     { name: "Tailwind CSS", icon: "tailwind" },
+  //     { name: "WhatsApp API", icon: "whatsapp" }
+  //   ],
+  //   stats: [
+  //     { value: "3.5K", label: "Daily Orders" },
+  //     { value: "85%", label: "Order Success Rate" }
+  //   ],
+  //   galleryImages: [cover6, cover6, cover6, cover6],
+  //   problem: "Local shops lacked digital tools to quickly go online, and customers couldn’t easily reach them.",
+  //   designProcess: "Mapped out seller and buyer journeys; rapid prototyping followed by real-world feedback iterations.",
+  //   keyInsights: [
+  //     "Shops need zero-learning setup",
+  //     "WhatsApp > app for communication",
+  //     "Visual clarity boosts order confidence"
+  //   ],
+  //   solutionDescription: "A fast, responsive platform with WhatsApp order sync, real-time inventory, and minimal interface for sellers.",
+  //   keyFeatures: [
+  //     "One-click store builder",
+  //     "Frontend performance optimization",
+  //     "WhatsApp integrated checkout"
+  //   ],
+  //   results: "Digitized 1.2K+ stores, driving local commerce and user loyalty.",
+  //   resultStats: [
+  //     { value: "40%", label: "Repeat Customers" },
+  //     { value: "1.2K", label: "Stores Onboarded" }
+  //   ],
+  //   tags: ["Design System", "Web"]
+  // },
   {
     id: 'flashy',
-    title: 'FlashyPanels UI/UX',
+    title: 'FlashyPanels',
     description: 'Designed user-friendly SMM dashboard with real-time service automation.',
-    image: cover3,
+    image: cover4,
     category: 'SaaS',
     challenge: 'Visualizing complex campaign data simply.',
     solution: 'Streamlined dashboard with bulk controls, analytics, and real-time feedback.',
@@ -177,25 +181,31 @@ export const projects: Project[] = [
       "Status-based UI feedback",
       "Clean campaign view layout"
     ],
-    results: "Adoption increased significantly post-redesign, especially among heavy users.",
+    results: "Adoption increased significantly post-redesign, especially among heavy users. ~client",
     resultStats: [
       { value: "4.7★", label: "User Rating" },
       { value: "45%", label: "MoM Growth" }
-    ]
+    ],
+    tags: ["SaaS", "Web"]
   },
   {
-    id: 'aideoa',
-    title: 'AIDEOA UI/UX',
-    description: 'Crafted an industry-focused community portal for mining professionals.',
+    id: 'genvogue',
+    title: 'Genogue',
+    description: 'Platform to design Merches like hoodie, t-shirt, etc. using AI',
     image: cover5,
     category: 'Org',
-    challenge: 'Designing a trust-driven, functional network for a niche audience.',
+    challenge: 'Designing a platform to design Merches like hoodie, t-shirt, etc. using AI',
     solution: 'UX built around verified communities, structured knowledge sharing, and events.',
-    link: 'https://aideoa.org/',
-    sourceCodeLink: 'https://github.com/vvc10/aideoa',
+    link: 'https://genvogue.vercel.app/',
+    sourceCodeLink: 'https://github.com/vvc10/genvogue',
     techStack: [
       { name: "Figma", icon: "figma" },
-      { name: "Miro", icon: "miro" }
+      { name: "Next.js", icon: "nextjs" },
+      { name: "Tailwind CSS", icon: "tailwind" },
+      { name: "Shadcn UI", icon: "shadcn" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "Supabase", icon: "supabase" },
+      { name: "Vercel", icon: "vercel" }
     ],
     stats: [
       { value: "8K", label: "Members" },
@@ -219,7 +229,47 @@ export const projects: Project[] = [
     resultStats: [
       { value: "500+", label: "Resources Shared" },
       { value: "1.2K", label: "Jobs Posted" }
-    ]
+    ],
+    tags: ["SaaS", "Web"]
+  },
+  {
+    id: 'aideoa',
+    title: 'AIDEOA',
+    description: 'Crafted an industry-focused community portal for mining professionals.',
+    image: cover6,
+    category: 'Org',
+    challenge: 'Designing a trust-driven, functional network for a niche audience.',
+    solution: 'UX built around verified communities, structured knowledge sharing, and events.',
+    link: 'https://aideoa.org/',
+    sourceCodeLink: 'https://github.com/vvc10/aideoa',
+    techStack: [
+      { name: "Figma", icon: "figma" },
+      { name: "Miro", icon: "miro" }
+    ],
+    stats: [
+      { value: "8K", label: "Members" },
+      { value: "95%", label: "Engagement" }
+    ],
+    galleryImages: [cover6, cover6, cover6, cover6],
+    problem: "Lack of industry-centric platforms led to fragmentation among mining experts.",
+    designProcess: "Stakeholder sessions with associations; created personas and mapped digital needs for knowledge and jobs.",
+    keyInsights: [
+      "Verified membership builds trust",
+      "Job board = retention engine",
+      "Events drive recurring visits"
+    ],
+    solutionDescription: "UI centered around trust and functionality, built for real community utility and collaboration.",
+    keyFeatures: [
+      "Specialized job board",
+      "Knowledge base structure",
+      "Professional profile UX"
+    ],
+    results: "High engagement and community retention after launch.",
+    resultStats: [
+      { value: "500+", label: "Resources Shared" },
+      { value: "1.2K", label: "Jobs Posted" }
+    ],
+    tags: ["SaaS", "Web"]
   }
 ];
 

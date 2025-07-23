@@ -8,8 +8,8 @@ const Logo = () => {
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
       <span className="text-xl font-display font-bold tracking-tight">
-        <span className="text-primary">Pank</span>
-        <span className="text-white">folio</span>
+        {/* <span className="text-primary">Pank</span> */}
+        <span className="text-zinc-300">Pankfolio</span>
       </span>
     </motion.div>
   );

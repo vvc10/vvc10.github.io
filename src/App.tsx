@@ -40,13 +40,13 @@ function App() {
               <div className="fixed inset-0 bg-grid-pattern bg-grid opacity-5 z-[-1]" />
 
               <Header />
-              <main>
+              <main className='bg-zinc-950'>
                 <Routes>
                   {/* Home route with all sections */}
                   <Route path="/" element={
                     <>
                       <Hero />
-                      <Services />
+                      {/* <Services /> */}
                       <Projects />
                       <Testinomials />
                       <Contact />
@@ -55,8 +55,8 @@ function App() {
                   } />
 
                   {/* Projects routes */}
-                  <Route path="/projects" element={<ProjectsPage />} />
-                  <Route path="/projects/:projectId" element={<ProjectCaseStudy />} />
+                  <Route path="/mywork" element={<ProjectsPage />} />
+                  <Route path="/mywork/:myworkId" element={<ProjectCaseStudy />} />
                 </Routes>
               </main>
               <Footer />

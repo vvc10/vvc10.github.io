@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
+import { ArrowRight, ExternalLink, Link } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 import Button from '../ui/Button';
 import cover1 from '../../assets/cover/cover01.png';
@@ -10,6 +10,7 @@ import cover4 from '../../assets/cover/cover04.png';
 import cover5 from '../../assets/cover/cover05.png';
 import cover6 from '../../assets/cover/cover07.png';
 import { projects } from '../ui/ProjectData';
+Link
 
 interface Project {
   id: string;
@@ -80,122 +81,97 @@ type Category = 'All' | 'SaaS' | 'FinTech' | 'Bookings' | 'Org';
 const categories: Category[] = ['All', 'SaaS', 'FinTech', 'Bookings', 'Org'];
 
 const Projects = () => {
-  const [selectedCategory, setSelectedCategory] = useState<Category>('All');
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [cursor, setCursor] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  const filteredProjects = selectedCategory === 'All'
-    ? projects
-    : projects.filter(project => project.category === selectedCategory);
+  // Smooth motion values for the label
+  const x = useMotionValue(cursor.x);
+  const y = useMotionValue(cursor.y);
+  const springX = useSpring(x, { stiffness: 400, damping: 40 });
+  const springY = useSpring(y, { stiffness: 400, damping: 40 });
+
+  useEffect(() => {
+    x.set(cursor.x + 20);
+    y.set(cursor.y + 20);
+  }, [cursor, x, y]);
+
+  const handleMouseMove = (e: React.MouseEvent, id: string) => {
+    setCursor({ x: e.clientX, y: e.clientY });
+    setHoveredId(id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredId(null);
+  };
 
   return (
-    <section id="projects" className="section-padding relative overflow-hidden">
-      {/* Decorative backgrounds */}
-      <div className="absolute top-40 -left-48 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-0 w-72 h-72 bg-secondary/5 rounded-full blur-3xl"></div>
+    <section id="projects" className="py-20 min-h-screen bg-zinc-950">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-10">
+          <div className="text-gray-500 text-lg mb-2">( Projects )</div>
 
-      <div className="grid-container relative z-10">
-        <SectionHeading
-          title="My Projects"
-          subtitle="Explore my portfolio of digital solutions that solve real-world problems with innovative approaches."
-        />
+          <h1 className="text-[45px] text-zinc-500 opacity-85 leading-[90px] mb-6 w-full font-medium text-center">
+            Some of my
+            <span className="shine-on-hover ml-4 bg-zinc-950 text-zinc-200 border text-[45px] border-surface px-5 py-3 mr-3 font-serif font-light italic rounded-full">
+              works
+            </span>
 
-        {/* Category filter buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm transition-all ${selectedCategory === category
-                  ? 'bg-primary text-white'
-                  : 'bg-white/5 text-text-secondary hover:bg-white/10'
-                }`}
-            >
-              {category}
-            </button>
-          ))}
+          </h1>
         </div>
-
-        {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <AnimatePresence mode="wait">
-            {filteredProjects.slice(0, 4).map((project) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {projects.slice(0, 4).map((project) => (
+            <div
+              key={project.id}
+              className={`relative rounded-3xl shadow-lg overflow-hidden flex flex-col min-h-[400px] h-[400px] cursor-pointer${hoveredId === project.id ? ' cursor-none' : ''}`}
+              onMouseMove={(e) => handleMouseMove(e, project.id)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="absolute inset-0 w-full h-full">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/30" />
+              </div>
+            </div>
+          ))}
+          {/* Hover label with smooth animation */}
+          <AnimatePresence>
+            {hoveredId && (
               <motion.div
-                layout
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-                className="glassmorphism group hover-card overflow-hidden"
-                onMouseEnter={() => setHoveredId(project.id)}
-                onMouseLeave={() => setHoveredId(null)}
+                className="fixed z-50 flex items-center gap-2 pointer-events-none pl-2 pr-4 py-2 bg-zinc-900 border border-zinc-700 text-white rounded-full text-sm font-medium shadow-lg transition-opacity duration-150 opacity-90"
+                style={{
+                  left: 0,
+                  top: 0,
+                  x: springX,
+                  y: springY,
+                  whiteSpace: 'nowrap',
+                  translateX: '-50%',
+                  translateY: '-50%',
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
               >
-                {/* Project image */}
-                <div className="relative aspect-video overflow-hidden">
-                  <motion.img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                    animate={{
-                      scale: hoveredId === project.id ? 1.05 : 1
-                    }}
-                    transition={{ duration: 0.4 }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent"></div>
-                  <div className="absolute top-4 right-4 bg-white/10 px-3 py-1 rounded-full text-xs backdrop-blur-sm">
-                    {project.category}
-                  </div>
-                </div>
-
-                {/* Project details */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                  <p className="text-text-secondary mb-6">{project.description}</p>
-
-                  {/* Expanded details on hover */}
-                  <AnimatePresence>
-                    {hoveredId === project.id && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="mt-4 pt-4 border-t border-white/10"
-                      >
-                        <div className="mb-4">
-                          <h4 className="text-sm font-semibold text-primary mb-1">THE CHALLENGE</h4>
-                          <p className="text-sm text-text-secondary">{project.challenge}</p>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-semibold text-primary mb-1">OUR SOLUTION</h4>
-                          <p className="text-sm text-text-secondary">{project.solution}</p>
-                        </div>
-
-                        <Button
-                          href={project.link}
-                          className="mt-6 text-sm py-2"
-                          variant="outline"
-                        >
-                          View Project <ExternalLink className="ml-2 w-4 h-4" />
-                        </Button>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                <div className='text-2xl bg-zinc-700 rounded-full px-4 py-2'>↗</div>
+                open {projects.find((p) => p.id === hoveredId)?.title}
               </motion.div>
-            ))}
+            )}
           </AnimatePresence>
         </div>
 
-        {/* View all button */}
-        <div className="w-full items-center justify-center flex mt-12">
-          <a
-            href="/projects"
-            className="inline-block text-[15px] relative overflow-hidden bg-gradient-to-br w-fit mx-auto from-[#434343] to-[#000000] text-white shadow-md border-t-[2px] border-t-white/30 hover:brightness-110 transition-all duration-300 hover:shadow-lg px-4 py-2 rounded-full text-lg"
-          >
-            View All Projects
-          </a>
-        </div>
+      </div>
+      <div className='flex mt-8 justify-center'>
+        <Button
+          href="/mywork"
+          variant="outline"
+          className="group px-8 py-3 rounded-full relative overflow-hidden border border-surface bg-gradient-to-b from-surface to-background text-white shadow-inner shadow-background border-t-[2px] border-t-white/20 hover:brightness-110 transition-all duration-300 hover:shadow-md"
+        >
+          see all
+          <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+        </Button>
       </div>
     </section>
   );

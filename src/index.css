@@ -4,13 +4,13 @@
 
 @layer base {
   :root {
-    --color-primary: 118 74 241;
-    --color-secondary: 80 207 255;
-    --color-accent: 255 46 129;
-    --color-background: 10 10 20;
-    --color-surface: 20 20 35;
-    --color-text-primary: 240 240 250;
-    --color-text-secondary: 185 185 220;
+    --color-primary: 130 90 255;         /* A more vibrant purple */
+    --color-secondary: 0 210 255;        /* Cyan for contrast */
+    --color-accent: 255 80 120;          /* Pinkish accent */
+    --color-background: 12 12 18;        /* Even darker background */
+    --color-surface: 28 28 40;           /* Slightly lighter than background */
+    --color-text-primary:  text-zinc-200;   /* Near white for high contrast */
+    --color-text-secondary: 160 180 220; /* Muted blue-gray for secondary text */
   }
 
   html {
@@ -70,7 +70,7 @@
 
 
   .btn-primary {
-    @apply bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20;
+    @apply bg-primary text-zinc-200 hover:bg-primary/90 shadow-lg shadow-primary/20;
   }
 
   .btn-outline {
