@@ -5,8 +5,8 @@ import Button from '../ui/Button'
 const Testinomials = () => {
     return (
         <div className='bg-zinc-950'>
-            <div className="max-w-7xl bg-gradient-to-br from-zinc-950  to-zinc-900 text-white shadow-md border-t-[2px] border-t-zinc-500/30 hover:brightness-110  px-8 py-8 rounded-2xl mx-auto flex items-center justify-between">
-                <div className="flex items-center space-x-3">
+            <div className="max-w-7xl bg-gradient-to-br from-zinc-950  to-zinc-900 text-white shadow-md border-t-[2px] border-t-zinc-500/30 hover:brightness-110  px-8 py-8 rounded-2xl mx-auto flex flex-col md:flex-row gap-10 md:gap-2 items-center justify-between">
+                <div className="flex flex-col md:flex-row gap-5 md:gap-2 items-center space-x-3">
                     <div className="flex -space-x-2">
                         <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=50" alt="Customer" className="w-10 h-10 rounded-full border-2 border-zinc-600" />
                         <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=50" alt="Customer" className="w-10 h-10 rounded-full border-2 border-zinc-600" />
