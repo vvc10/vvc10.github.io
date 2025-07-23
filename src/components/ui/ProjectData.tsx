@@ -82,7 +82,7 @@ export const projects: Project[] = [
     sourceCodeLink: 'https://github.com/yourusername/hedgemyfunds',
     techStack: [
       { name: "Figma", icon: "figma" },
-      { name: "D3.js", icon: "d3" }
+      { name: "Framer", icon: "Framer" }
     ],
     stats: [
       { value: "2.8M", label: "Assets Managed" },

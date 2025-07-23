@@ -17,8 +17,8 @@ const CtaSection = () => {
 
 
     return (
-        <div className="max-w-7xl bg-zinc-950 bg-gradient-to-br from-zinc-950 to-zinc-900 text-white shadow-lg border-t-[2px] border-t-zinc-500/30 hover:brightness-110 px-12 py-8 rounded-2xl mx-auto flex flex-col gap-6 text-center mt-16 justify-between">
-            <h1 className="text-[65px] text-zinc-500 opacity-85 leading-[90px] mb-3 w-full font-medium text-center">
+        <div className="max-w-7xl bg-zinc-950 bg-gradient-to-br from-zinc-950 to-zinc-900 text-white shadow-lg border-t-[2px] border-t-zinc-500/30 hover:brightness-110 px-12 py-8 mx-4 rounded-2xl flex flex-col gap-6 text-center mt-16 justify-between">
+            <h1 className="text-[65px] flex flex-col md:block items-center md:text-[65px] text-zinc-500 opacity-85 leading-[90px] mb-3 w-full font-medium text-center">
                 Have an
                 <span className="shine-on-hover ml-4 bg-zinc-950 text-zinc-200 border text-[55px] border-surface px-10 py-3 mr-3 font-serif font-light italic rounded-full">idea</span>
                 in mind?
