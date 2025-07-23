@@ -4,7 +4,7 @@ import Button from '../ui/Button'
 
 const Testinomials = () => {
     return (
-        <div className='bg-zinc-950'>
+        <div className='bg-zinc-950 px-4 md:px-0'>
             <div className="max-w-7xl bg-gradient-to-br from-zinc-950  to-zinc-900 text-white shadow-md border-t-[2px] border-t-zinc-500/30 hover:brightness-110  px-8 py-8 rounded-2xl mx-auto flex flex-col md:flex-row gap-10 md:gap-2 items-center justify-between">
                 <div className="flex flex-col md:flex-row gap-5 md:gap-2 items-center space-x-3">
                     <div className="flex -space-x-2">

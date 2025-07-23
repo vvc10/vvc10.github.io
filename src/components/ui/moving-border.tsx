@@ -90,21 +90,53 @@ export const MovingBorder = ({
   const progress = useMotionValue<number>(0);
 
   useAnimationFrame((time) => {
-    const length = pathRef.current?.getTotalLength();
+    let length = 0;
+    try {
+      if (
+        pathRef.current &&
+        typeof pathRef.current.getTotalLength === 'function' &&
+        pathRef.current.getBBox().width > 0 &&
+        pathRef.current.getBBox().height > 0
+      ) {
+        length = pathRef.current.getTotalLength();
+      }
+    } catch (e) {
+      length = 0;
+    }
     if (length) {
       const pxPerMillisecond = length / duration;
       progress.set((time * pxPerMillisecond) % length);
     }
   });
 
-  const x = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).x,
-  );
-  const y = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).y,
-  );
+  const x = useTransform(progress, (val) => {
+    try {
+      if (
+        pathRef.current &&
+        typeof pathRef.current.getTotalLength === 'function' &&
+        pathRef.current.getBBox().width > 0 &&
+        pathRef.current.getBBox().height > 0 &&
+        pathRef.current.getTotalLength() > 0
+      ) {
+        return pathRef.current.getPointAtLength(val).x;
+      }
+    } catch (e) {}
+    return 0;
+  });
+  const y = useTransform(progress, (val) => {
+    try {
+      if (
+        pathRef.current &&
+        typeof pathRef.current.getTotalLength === 'function' &&
+        pathRef.current.getBBox().width > 0 &&
+        pathRef.current.getBBox().height > 0 &&
+        pathRef.current.getTotalLength() > 0
+      ) {
+        return pathRef.current.getPointAtLength(val).y;
+      }
+    } catch (e) {}
+    return 0;
+  });
 
   const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
 

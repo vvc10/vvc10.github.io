@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Button from '../ui/Button';
 import ParticleBackground from '../ui/ParticleBackground';
+import { Button as MovingBorderButton } from "../ui/moving-border";
 
 const Hero = () => {
   return (
@@ -26,12 +27,12 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <p className="text-zinc-200 mb-4 font-extralight">( Hey! My name is Pankaj. )</p>
-            <h1 className="text-[65px] text-zinc-500 opacity-85 leading-[90px] mb-6 w-full font-medium text-center">
-              I Craft 
-              <span className="shine-on-hover ml-4 bg-zinc-950 text-zinc-200 border text-[55px] border-surface px-10 py-3 mr-3 font-serif font-light italic rounded-full">Digital  </span>
-              Experience that Transcend  
-              <span className="shine-on-hover ml-4 bg-zinc-950 text-zinc-200 border text-[55px] border-surface px-10 py-3 mr-3 font-serif font-light italic rounded-full">Boundaries</span>
+            <p className="text-zinc-500 mb-4 font-extralight">( Hey! My name is Pankaj )</p>
+            <h1 className="text-[55px] flex flex-col md:block items-center md:text-[65px] text-zinc-500 opacity-85 leading-[90px] mb-6 w-full font-medium text-center">
+              I Craft
+              <span className="shine-on-hover ml-4 bg-zinc-950 text-zinc-200 border text-[45px] md:text-[55px] border-surface px-10 py-3 mr-3 font-serif font-light italic rounded-full w-fit">Digital  </span>
+              Experience that Transcend
+              <span className="shine-on-hover ml-4 bg-zinc-950 text-zinc-200 border text-[45px] md:text-[55px] border-surface px-10 py-3 mr-3 font-serif font-light italic rounded-full">Boundaries</span>
             </h1>
 
           </motion.div>
@@ -42,24 +43,32 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            We're a premium design studio specializing in creating immersive digital products and experiences that push the boundaries of what's possible on the web.
+            I create immersive digital products and experiences that push the boundaries of what's possible on the web.
           </motion.p>
 
           <motion.div
-            className="flex flex-wrap justify-center gap-4"
+            className="flex flex-col md:flex-row justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
           >
-            <Button
+            <MovingBorderButton
+              as="a"
               href="#contact"
-              className="px-8 py-3 rounded-full relative overflow-hidden bg-gradient-to-br from-zinc-100 to-zinc-700 text-zinc-900 shadow-md border-t-[2px] border-t-zinc-500 hover:brightness-110 transition-all duration-300 hover:shadow-lg"
+              className="group block  px-8 py-3 rounded-full text-lg relative overflow-hidden border border-surface bg-gradient-to-b from-zinc-200 to-zinc-500 text-zinc-900 shadow-inner shadow-background border-t-[2px] border-t-zinc-500 hover:brightness-110 transition-all duration-300 hover:shadow-md"
             >
-             Let's talk
-            </Button>
+              Let's talk
+            </MovingBorderButton>
+
+            {/* <Button
+              href="#contact"
+              className="px-8 py-3 hidden md:block rounded-full relative overflow-hidden bg-gradient-to-br from-zinc-100 to-zinc-700 text-zinc-900 shadow-md border-t-[2px] border-t-zinc-500 hover:brightness-110 transition-all duration-300 hover:shadow-lg"
+            >
+              Let's talk
+            </Button> */}
 
             <Button
-              href="#services"
+              href="#projects"
               variant="outline"
               className="group px-8 py-3 rounded-full relative overflow-hidden border border-surface bg-gradient-to-b from-surface to-background text-white shadow-inner shadow-background border-t-[2px] border-t-white/20 hover:brightness-110 transition-all duration-300 hover:shadow-md"
             >

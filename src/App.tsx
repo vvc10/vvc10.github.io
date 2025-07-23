@@ -31,38 +31,32 @@ function App() {
   return (
     <Router>
       <div className="relative overflow-hidden">
-        <AnimatePresence>
-          {isLoading ? (
-            <Loader key="loader" />
-          ) : (
-            <>
-              <div className="fixed inset-0 bg-background z-[-1]" />
-              <div className="fixed inset-0 bg-grid-pattern bg-grid opacity-5 z-[-1]" />
+        <div>
+          <div className="fixed inset-0 bg-background z-[-1]" />
+          <div className="fixed inset-0 bg-grid-pattern bg-grid opacity-5 z-[-1]" />
 
-              <Header />
-              <main className='bg-zinc-950'>
-                <Routes>
-                  {/* Home route with all sections */}
-                  <Route path="/" element={
-                    <>
-                      <Hero />
-                      {/* <Services /> */}
-                      <Projects />
-                      <Testinomials />
-                      <Contact />
-                      <CtaSection />
-                    </>
-                  } />
+          <Header />
+          <main className='bg-zinc-950'>
+            <Routes>
+              {/* Home route with all sections */}
+              <Route path="/" element={
+                <>
+                  <Hero />
+                  {/* <Services /> */}
+                  <Projects />
+                  <Testinomials />
+                  <Contact />
+                  <CtaSection />
+                </>
+              } />
 
-                  {/* Projects routes */}
-                  <Route path="/mywork" element={<ProjectsPage />} />
-                  <Route path="/mywork/:myworkId" element={<ProjectCaseStudy />} />
-                </Routes>
-              </main>
-              <Footer />
-            </>
-          )}
-        </AnimatePresence>
+              {/* Projects routes */}
+              <Route path="/mywork" element={<ProjectsPage />} />
+              <Route path="/mywork/:myworkId" element={<ProjectCaseStudy />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
       </div>
     </Router>
   );
