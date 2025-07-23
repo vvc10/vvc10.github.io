@@ -9,7 +9,8 @@ const Logo = () => {
     >
       <span className="text-xl font-display font-bold tracking-tight">
         {/* <span className="text-primary">Pank</span> */}
-        <span className="text-zinc-300">Pankfolio</span>
+        <a href='/'>        <span className="text-zinc-300">Pankfolio</span>
+</a>
       </span>
     </motion.div>
   );

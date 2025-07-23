@@ -95,24 +95,25 @@ href='https://x.com/pankajstwt'
             transition={{ duration: 0.3 }}
             className="md:hidden mt-2"
           >
-            <nav className="flex flex-col bg-white/5 backdrop-blur-md border border-white/10 rounded-lg py-4 px-6 mt-2">
+            <nav className="flex flex-col w-[80%] text-center mx-auto bg-white/5 backdrop-blur-md border border-white/10 rounded-lg py-4 px-6 mt-2">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="py-2 text-sm text-text-secondary hover:text-white font-medium"
+                  className="py-2 text-sm text-zinc-400 hover:text-white font-medium"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </a>
               ))}
-              <a
-                href="#contact"
-                className="btn cursor-pointer btn-primary text-sm mt-3 text-center"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Get in Touch
-              </a>
+               <MovingBorderButton
+            as="a"
+            href="#contact"
+
+            className="group px-8 py-3 rounded-full relative overflow-hidden border border-surface bg-gradient-to-b from-surface to-background text-white shadow-inner shadow-background border-t-[2px] border-t-white/20 hover:brightness-110 transition-all duration-300 hover:shadow-md"
+          >
+            Connect
+          </MovingBorderButton>
             </nav>
           </motion.div>
         )}

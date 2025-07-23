@@ -12,8 +12,8 @@ const Hero = () => {
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute top-1/3 -right-16 w-64 h-64 bg-zinc-200/10 rounded-full blur-3xl animate-float-slow"></div>
-      <div className="absolute bottom-1/4 -left-20 w-72 h-72 bg-zinc-200/10 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute top-[20%]  md:top-1/3 -right-16 w-64 h-64 bg-zinc-200/10 rounded-full blur-3xl animate-float-slow"></div>
+      <div className="absolute bottom-[20%] md:bottom-1/4 -left-20 w-72 h-72 bg-zinc-200/10 rounded-full blur-3xl animate-float"></div>
 
       <div className="relative z-10 px-4 max-w-5xl">
         <motion.div
@@ -28,7 +28,7 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <p className="text-zinc-500 mb-4 font-extralight">( Hey! My name is Pankaj )</p>
-            <h1 className="text-[55px] flex flex-col md:block items-center md:text-[65px] text-zinc-500 opacity-85 leading-[90px] mb-6 w-full font-medium text-center">
+            <h1 className="text-[55px] flex flex-col md:block items-center md:text-[65px] text-zinc-500 opacity-85 leading-[70px] md:leading-[90px] mb-6 w-full font-medium text-center">
               I Craft
               <span className="shine-on-hover ml-4 bg-zinc-950 text-zinc-200 border text-[45px] md:text-[55px] border-surface px-10 py-3 mr-3 font-serif font-light italic rounded-full w-fit">Digital  </span>
               Experience that Transcend

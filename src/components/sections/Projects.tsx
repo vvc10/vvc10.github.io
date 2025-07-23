@@ -10,7 +10,7 @@ import cover4 from '../../assets/cover/cover04.png';
 import cover5 from '../../assets/cover/cover05.png';
 import cover6 from '../../assets/cover/cover07.png';
 import { projects } from '../ui/ProjectData';
-Link
+import ProjectCaseStudy from '../../pages/projectdetails';
 
 interface Project {
   id: string;
@@ -83,6 +83,7 @@ const categories: Category[] = ['All', 'SaaS', 'FinTech', 'Bookings', 'Org'];
 const Projects = () => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [cursor, setCursor] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [modalProjectId, setModalProjectId] = useState<string | null>(null);
 
   // Smooth motion values for the label
   const x = useMotionValue(cursor.x);
@@ -102,6 +103,13 @@ const Projects = () => {
 
   const handleMouseLeave = () => {
     setHoveredId(null);
+  };
+
+  const handleCardClick = (projectId: string) => {
+    setModalProjectId(projectId);
+  };
+  const handleModalClose = () => {
+    setModalProjectId(null);
   };
 
   return (
@@ -125,6 +133,7 @@ const Projects = () => {
               className={`relative rounded-3xl shadow-lg overflow-hidden flex flex-col min-h-[400px] h-[400px] cursor-pointer${hoveredId === project.id ? ' cursor-none' : ''}`}
               onMouseMove={(e) => handleMouseMove(e, project.id)}
               onMouseLeave={handleMouseLeave}
+              onClick={() => handleCardClick(project.id)}
             >
               <div className="absolute inset-0 w-full h-full">
                 <img
@@ -161,7 +170,6 @@ const Projects = () => {
             )}
           </AnimatePresence>
         </div>
-
       </div>
       <div className='flex mt-8 justify-center'>
         <Button
@@ -173,6 +181,34 @@ const Projects = () => {
           <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
         </Button>
       </div>
+      {/* Modal for project details */}
+      <AnimatePresence>
+        {modalProjectId && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleModalClose}
+          >
+            <div
+              className="relative max-w-5xl w-full mx-auto"
+              onClick={e => e.stopPropagation()}
+            >
+              <button
+                onClick={e => { e.stopPropagation(); handleModalClose(); }}
+                className="absolute top-4 right-4 z-10 text-zinc-400 hover:text-white text-2xl bg-zinc-900/80 rounded-full p-2 border border-zinc-700"
+                aria-label="Close"
+              >
+                ×
+              </button>
+              <div className="overflow-y-auto max-h-[90vh] rounded-2xl">
+                <ProjectCaseStudy myworkId={modalProjectId} isModal />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
